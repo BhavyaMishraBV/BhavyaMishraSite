@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhavya Mishra | Machine learning engineer and computational researcher</title>
+  <meta name="description" content="Portfolio of Bhavya Mishra: machine learning systems, scientific simulation and published research in computational cosmology.">
+  <meta name="theme-color" content="#0b0d1a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
+  <link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="wordmark" href="#top">Bhavya Mishra</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero: video at media/logovid.mp4 -->
+  <section class="hero" id="top">
+    <div class="media">
+      <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="media/logovid.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="hero-copy">
+      <h1>Bhavya Mishra</h1>
+      <p>I build and evaluate machine learning systems, and I make scientific simulations fast.</p>
+    </div>
+  </section>
+  <div class="hero-transition" aria-hidden="true"></div>
+
+  <div class="surface">
+    <main class="content" id="main">
+
+      <!-- Intro -->
+      <section class="section">
+        <div class="statement">
+          <p>I'm a machine learning engineer who learned to build in computational cosmology. Four years of research taught me to work through hard problems on my own, and to measure a result before trusting it.</p>
+          <p>Now I do the same with AI systems: choosing models, training and testing them, and getting them into a working product.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Now</dt><dd>AI &amp; ML Engineer, Econolite Group / Gurastech LLC</dd></div>
+          <div><dt>Education</dt><dd>BS Computer Science (Honors), Manhattan University, 2025, magna cum laude. Concentration in Machine Learning and Intelligence, minor in Astronomy.</dd></div>
+          <div><dt>Research</dt><dd>Four years of computational cosmology. Co-author of arXiv:2604.12009.</dd></div>
+          <div><dt>Looking for</dt><dd>Entry-level machine learning and AI engineering roles</dd></div>
+          <div><dt>Based in</dt><dd>New York, NY</dd></div>
+        </dl>
+      </section>
+
+      <!-- Featured work -->
+      <section class="section" id="work">
+        <h2>Three projects, in depth</h2>
+        <p class="section-note">Each one opens a page with the full story: the problem, the decisions, the results and where the code lives.</p>
+
+        <article class="project">
+          <h3>A pion field for the large-scale universe</h3>
+          <p>Co-authored a paper and co-wrote the simulation code with my advisor. I took its FFT-based solver from a Mathematica prototype to C++.</p>
+          <ul>
+            <li>Paper: arXiv:2604.12009 (2026)</li>
+            <li>About 400 times faster than the first prototype</li>
+            <li>Seven conference talks, 2022 to 2025</li>
+          </ul>
+          <a class="btn" href="projects/pion-research.html">Read the project story</a>
+        </article>
+
+        <article class="project">
+          <h3>Simulating the universe, fast</h3>
+          <p>My honors thesis: a custom mixed-radix FFT and CPU parallelization in C++, checked against the standard FFTW3 library.</p>
+          <ul>
+            <li>Matches FFTW3 to about 1e-12</li>
+            <li>2.6 to 3.3 times faster with 8 threads on large grids</li>
+            <li>Manhattan University, 2025</li>
+          </ul>
+          <a class="btn" href="projects/honors-thesis.html">Read the project story</a>
+        </article>
+
+        <article class="project">
+          <h3>MediChat chatbot, from raw data to deployment</h3>
+          <p>I built the chatbot for a team health-consultation app: data filtering, model comparison and training, and a hybrid chat system.</p>
+          <ul>
+            <li>Four models compared, RoBERTa selected</li>
+            <li>31 hits locally, 56 after cluster training, on a small 200-pass test</li>
+            <li>Four iterations delivered to the frontend team</li>
+          </ul>
+          <a class="btn" href="projects/medichat-chatbot.html">Read the project story</a>
+        </article>
+      </section>
+
+      <!-- Research output -->
+      <section class="section" id="research">
+        <h2>Publications and talks</h2>
+        <ul class="refs">
+          <li><strong>Effective field theory of a single scalar pion field for large scale structure in the Universe.</strong> Celik, L., Horn, B., Mishra, B., &amp; Muqattash, D. (2026). <a href="https://arxiv.org/abs/2604.12009">arXiv:2604.12009</a></li>
+          <li><strong>Simulating the Universe: An Efficient Computational Model of the Pion Description of Large-Scale Structure.</strong> Mishra, B. (2025). Honors thesis, Science Honors Program, Manhattan University. <a href="https://github.com/BhavyaMishraBV/Honors_Thesis_2025">Thesis and code</a></li>
+        </ul>
+
+        <h3 class="sub">Conference talks</h3>
+        <ul class="talks">
+          <li class="talk"><time datetime="2025-04">Apr 2025</time><div>Cosmological Field Simulation<span>Honors Thesis Defense, Science Seminar, Manhattan University</span></div></li>
+          <li class="talk"><time datetime="2025">2025</time><div>Mapping the Universe's Growth<span>Cosmic Pathways 2025, City College of New York</span></div></li>
+          <li class="talk"><time datetime="2024-09">Sep 2024</time><div>Mapping the Universe's Growth<span>Manhattan University Summer Research Conference, Riverdale, NY</span></div></li>
+          <li class="talk"><time datetime="2024-04">Apr 2024</time><div>Simulating Large-Scale Structure Evolution with Soft-Pion Inspired Fluid Description<span>42nd RSPS Zone 2 Conference, University of Rochester, NY</span></div></li>
+          <li class="talk"><time datetime="2023-09">Sep 2023</time><div>Pion Description for Large-Scale Structure in the Universe<span>Manhattan University Summer Research Symposium, Riverdale, NY</span></div></li>
+          <li class="talk"><time datetime="2023-04">Apr 2023</time><div>Modeling Large-Scale Structure Evolution Using Cosmological Pion Simulations<span>41st RSPS Zone 2 Conference, University of Rochester, NY</span></div></li>
+          <li class="talk"><time datetime="2022-10">Oct 2022</time><div>Early Universe Simulation: Large-Scale Structure as Pressure-less Pion Fluid<span>Jasper Summer Research Symposium, Manhattan University</span></div></li>
+        </ul>
+      </section>
+
+      <!-- Experience -->
+      <section class="section" id="experience">
+        <h2>Experience and education</h2>
+        <ol class="timeline">
+          <li>
+            <div class="when">May 2025 to present</div>
+            <h3>AI &amp; ML Engineer, Econolite Group / Gurastech LLC</h3>
+            <!-- TODO: add one or two lines about work you can describe publicly -->
+            <p>Joined as an intern in December 2024 and moved into the engineer role in May 2025.</p>
+          </li>
+          <li>
+            <div class="when">May 2025</div>
+            <h3>BS Computer Science, Honors, Manhattan University</h3>
+            <p>Magna cum laude. Concentration in Machine Learning and Intelligence, minor in Astronomy.</p>
+          </li>
+          <li>
+            <div class="when">Four years of undergraduate research</div>
+            <h3>Computational cosmology with Dr. Bart Horn</h3>
+            <p>Simulation code, a custom FFT, an honors thesis and a paper on a pion-field description of large-scale structure. Supported by the NSF RUI program (grant PHY-2210475) and the Kakos School of Arts and Sciences Summer Research Scholars Program.</p>
+          </li>
+        </ol>
+
+        <h3 class="sub">Toolbox</h3>
+        <div class="toolbox">
+          <div><h3>Machine learning and language</h3><ul><li>Python, PyTorch</li><li>Hugging Face Transformers</li><li>Fine-tuning and evaluating language and question-answering models</li><li>NLTK, cluster training</li></ul></div>
+          <div><h3>Scientific computing</h3><ul><li>C++17, OpenMP, Python, NumPy</li><li>FFT algorithms, FFTW</li><li>Field and lattice simulation</li><li>Mathematica</li></ul></div>
+          <div><h3>Backend and delivery</h3><ul><li>FastAPI, REST APIs</li><li>Supabase</li><li>Gradio</li><li>Git and GitHub</li></ul></div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section contact" id="contact">
+        <h2>Get in touch</h2>
+        <p>I'm open to entry-level machine learning and AI engineering roles, and glad to talk about the research. Send a message here or use the links.</p>
+        <ul class="links">
+          <li><a href="https://github.com/BhavyaMishraBV">GitHub: BhavyaMishraBV</a></li>
+          <li><a href="https://arxiv.org/abs/2604.12009">Paper on arXiv</a></li>
+          <!-- TODO: replace with your LinkedIn URL -->
+          <li><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></li>
+          <!-- TODO: replace with your email -->
+          <li><a href="mailto:your.email@example.com">your.email@example.com</a></li>
+        </ul>
+        <form class="form" id="contact-form" novalidate>
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="company">Leave this field empty</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+          <div><button class="btn" type="submit">Send message</button></div>
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; <span id="year">2026</span> Bhavya Mishra</span>
+      <span><a href="#top">Back to top</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
