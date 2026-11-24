@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulating the universe, fast | Bhavya Mishra</title>
+  <meta name="description" content="Honors thesis: a custom mixed-radix FFT and CPU parallelization in C++ for a cosmological field simulation, validated against FFTW3.">
+  <meta name="theme-color" content="#05131a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-theme="thesis">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="../index.html">Bhavya Mishra</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html#work">All projects</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero: drop your own clip at assets/video/thesis.mp4 and it replaces the animated scene -->
+  <section class="hero hero--project">
+    <div class="media">
+      <canvas data-scene="thesis" aria-hidden="true"></canvas>
+      <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="../assets/video/thesis.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="wrap hero-copy">
+      <h1 class="display display--page">Simulating the universe, fast</h1>
+      <p class="hero-line hero-line--page">My honors thesis: making a cosmological field simulation fast enough to use, with an FFT I wrote myself and then checked against the industry standard.</p>
+      <dl class="meta">
+        <div><dt>Work</dt><dd>Honors thesis, Manhattan University, 2025</dd></div>
+        <div><dt>Stack</dt><dd>C++17, OpenMP, Python</dd></div>
+        <div><dt>Advisor</dt><dd>Dr. Bart Horn</dd></div>
+      </dl>
+    </div>
+  </section>
+  <div class="hero-blend" aria-hidden="true"></div>
+
+  <main class="page-body" id="main">
+    <div class="section" style="padding-top:0">
+      <div class="wrap story">
+
+        <section>
+          <p class="lead">A simulation that takes forty minutes on a tiny grid is not a tool you can explore with. The thesis is about fixing that.</p>
+          <p>The pion description of large-scale structure needs a field evolved on a 3D grid, and at every step it needs a Poisson-type equation solved. In the first versions, that step used Green's functions and cost O(N⁶) for N points per side. A 25³ grid in Python took about forty minutes. Higher resolution was out of reach.</p>
+        </section>
+
+        <section>
+          <h2>What I changed</h2>
+          <ol class="steps">
+            <li><h3>Swapped the algorithm</h3><p>Spectral inversion with FFTs replaces the Green's function sum: O(N⁶) becomes O(N³ log N).</p></li>
+            <li><h3>Moved from Python to C++</h3><p>A C++17 implementation with a flat, cache-friendly array layout. A run from about 17 Myr to 1.63 Gyr took about twenty minutes.</p></li>
+            <li><h3>Wrote my own FFT</h3><p>A mixed-radix Cooley–Tukey transform for sizes built from the factors 2, 3 and 5, so grids are not forced to be powers of two. It works on 3D arrays directly.</p></li>
+            <li><h3>Parallelized with OpenMP</h3><p>The 1D transforms along each axis are independent, so slices are divided between threads.</p></li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>How much faster</h2>
+          <p>Overall, the C++ solver is about 400 times faster than the first Mathematica prototype: roughly 20 times from the algorithm and Python move, and roughly 20 times from C++. The bars use a log scale, because a linear one would flatten the first two.</p>
+          <div class="bars" role="img" aria-label="Speedup on a log scale: 1 times for the Mathematica prototype, about 20 times for Python, about 400 times for C++.">
+            <div class="bar"><span>Mathematica prototype</span><div class="bar-track"><div class="bar-fill" style="--w:4%"></div><span class="bar-val">1×</span></div></div>
+            <div class="bar"><span>Python with FFT</span><div class="bar-track"><div class="bar-fill" style="--w:50%"></div><span class="bar-val">~20×</span></div></div>
+            <div class="bar"><span>C++ with custom FFT</span><div class="bar-track"><div class="bar-fill" style="--w:100%"></div><span class="bar-val">~400×</span></div></div>
+          </div>
+          <p class="bar-note">Log scale. Speedups are approximate, measured against the first prototype.</p>
+        </section>
+
+        <section>
+          <h2>Checking it against FFTW3</h2>
+          <p>I validated the custom FFT against FFTW3, the standard library for this job. The results agree to about 1e-12.</p>
+          <table class="data">
+            <tbody>
+              <tr><th>Accuracy against FFTW3</th><td>Agrees to about 1e-12</td></tr>
+              <tr><th>Single-core speed</th><td>FFTW3 is about 50 times faster</td></tr>
+              <tr><th>OpenMP, 8 threads</th><td>2.6 to 3.3 times faster on grids of 64³ and larger</td></tr>
+              <tr><th>On local machines</th><td>About 3 times faster</td></tr>
+            </tbody>
+          </table>
+          <div class="callout"><p>FFTW3 is much faster, and I say so plainly. What the custom FFT gave me is flexibility: control over layout, grid sizes and parallelization inside the simulation, and a result I can fully explain.</p></div>
+        </section>
+
+        <section>
+          <h2>Thesis, code and talks</h2>
+          <ul class="linklist">
+            <li><a href="https://github.com/BhavyaMishraBV/Honors_Thesis_2025">Honors_Thesis_2025 on GitHub</a><span>Code, benchmarks and the thesis</span></li>
+            <li><a href="https://github.com/BhavyaMishraBV/Honors_Thesis_2025/blob/main/Thesis/Mishra_Honors_Thesis_2025.pdf">Read the thesis (PDF)</a><span>Science Honors Program, Manhattan University, 2025</span></li>
+            <li><a href="pion-research.html">The research it supports</a><span>The paper and the physics</span></li>
+          </ul>
+          <p style="margin-top:1.6em; font-size:1rem; color:var(--muted)">Defended in April 2025 at the Science Seminar, Manhattan University. Advised by Dr. Bart Horn.</p>
+        </section>
+
+        <nav class="pager" aria-label="Project navigation">
+          <a href="pion-research.html"><small>Previous project</small><strong>A pion field for the large-scale universe</strong></a>
+          <a href="medichat-chatbot.html"><small>Next project</small><strong>MediChat chatbot</strong></a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; <span id="year">2026</span> Bhavya Mishra</span>
+      <span><a href="../index.html#contact">Get in touch</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/scenes.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

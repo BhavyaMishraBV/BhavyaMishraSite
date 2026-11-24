@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediChat chatbot, from raw data to deployment | Bhavya Mishra</title>
+  <meta name="description" content="The chatbot behind a team health-consultation app: data filtering, model comparison and training, and a hybrid chat system.">
+  <meta name="theme-color" content="#070d24">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-theme="capstone">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="../index.html">Bhavya Mishra</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html#work">All projects</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero: drop your own clip at assets/video/capstone.mp4 and it replaces the animated scene -->
+  <section class="hero hero--project">
+    <div class="media">
+      <canvas data-scene="capstone" aria-hidden="true"></canvas>
+      <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="../assets/video/capstone.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="wrap hero-copy">
+      <h1 class="display display--page">MediChat chatbot, from raw data to deployment</h1>
+      <p class="hero-line hero-line--page">The chatbot inside a team health-consultation app. I built it from the data up: filtering, choosing a model, training it and designing how it talks.</p>
+      <dl class="meta">
+        <div><dt>Work</dt><dd>Senior capstone, Manhattan University, 2025</dd></div>
+        <div><dt>My part</dt><dd>The chatbot process, end to end</dd></div>
+        <div><dt>Stack</dt><dd>Python, PyTorch, Transformers, FastAPI</dd></div>
+      </dl>
+    </div>
+  </section>
+  <div class="hero-blend" aria-hidden="true"></div>
+
+  <main class="page-body" id="main">
+    <div class="section" style="padding-top:0">
+      <div class="wrap story">
+
+        <section>
+          <p class="lead">MediChat is a health-consultation app built by a team. My share was the chatbot: everything from raw medical text to a working chat system.</p>
+          <p>The team built the rest, including the app and frontend. I handed the frontend team four iterations of the chatbot as it improved, and the code for my process lives in its own repository. Teammates are credited on the repository and below.</p>
+        </section>
+
+        <section>
+          <h2>The pipeline</h2>
+          <ol class="steps">
+            <li><h3>Data and filtering</h3><p>I assembled medical text from public sources and filtered it to muscle-related conditions, then fixed several bugs in the original filtering scripts.</p></li>
+            <li><h3>Choose a model</h3><p>I compared four models locally and kept RoBERTa for question answering.</p></li>
+            <li><h3>Fine-tune in stages</h3><p>The model started from deepset/roberta-base-squad2. It was then tuned on disease and symptom question answering, then on PubMedQA yes/no questions, then on a custom question-answering set.</p></li>
+            <li><h3>Train on the cluster</h3><p>The final training ran on the Artemis node of the Kakos cluster at Manhattan University.</p></li>
+            <li><h3>Design the chatbot</h3><p>I turned the model into a chat system, over four stages (below).</p></li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>A small, honest test</h2>
+          <p>To compare models I wrote a selection test on 100 muscle-filtered entries, run in both directions, for 200 passes. Given a disease, the model names three symptoms, and it scores a hit when two match. Given symptoms, it names the disease, and it scores a hit when the disease matches.</p>
+          <div class="twocol">
+            <div><p style="font-size:2.4rem; font-family:var(--serif); margin:0">31</p><p>hits for RoBERTa on a local machine</p></div>
+            <div><p style="font-size:2.4rem; font-family:var(--serif); margin:0">56</p><p>hits after cluster training</p></div>
+          </div>
+          <div class="callout"><p>This is a sanity check for choosing a direction, not a benchmark. It is small and specific, and it does not show clinical accuracy.</p></div>
+        </section>
+
+        <section>
+          <h2>How the chatbot evolved</h2>
+          <ol class="timeline">
+            <li><h3>Gradio prototype and FastAPI baseline</h3><p>A first working loop, then an API the frontend team could call.</p></li>
+            <li><h3>Polishing experiments</h3><p>I tried Zephyr-7B and GPT-3.5 to polish the answers. Zephyr was too light and not promising enough, and I tried GPT-3.5 as the alternative.</p></li>
+            <li><h3>NLTK symptom matching</h3><p>A command-line version that matches symptoms directly. It showed me what the local knowledge could do alone.</p></li>
+            <li><h3>Final hybrid on Mistral-7B-Instruct</h3><p>The local guide began as a router and became a knowledge base that acts as a barrier against wrongly inferred answers. Mistral writes the conversation around it.</p></li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Limits</h2>
+          <p>MediChat is a student project and not a medical device. It does not diagnose, and nobody should use it in place of a clinician.</p>
+        </section>
+
+        <section>
+          <h2>Code and credits</h2>
+          <ul class="linklist">
+            <li><a href="https://github.com/BhavyaMishraBV/MediChat_Capstone-2025">MediChat_Capstone-2025 on GitHub</a><span>My chatbot process: data, training and selection, chatbot design</span></li>
+            <li><a href="https://gitlab.com/petra184/medi-chat">The full app on GitLab</a><span>The team repository, including the app and frontend</span></li>
+          </ul>
+          <p style="margin-top:1.6em; font-size:1rem; color:var(--muted)">Built with teammates, who are credited in the repository. Data from public sources including the Disease-Symptom Description Dataset on Kaggle (Itachi 9604, 2022), PubMed and DrugBank.</p>
+        </section>
+
+        <nav class="pager" aria-label="Project navigation">
+          <a href="honors-thesis.html"><small>Previous project</small><strong>Simulating the universe, fast</strong></a>
+          <a href="../index.html#work"><small>Next project</small><strong>All projects</strong></a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; <span id="year">2026</span> Bhavya Mishra</span>
+      <span><a href="../index.html#contact">Get in touch</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/scenes.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

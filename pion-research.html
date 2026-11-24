@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A pion field for the large-scale universe | Bhavya Mishra</title>
+  <meta name="description" content="Co-authored paper and simulation code on an effective field theory of a single scalar pion field for large-scale structure.">
+  <meta name="theme-color" content="#0a0820">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-theme="pion">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="../index.html">Bhavya Mishra</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html#work">All projects</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero: drop your own clip at assets/video/pion.mp4 and it replaces the animated scene -->
+  <section class="hero hero--project">
+    <div class="media">
+      <canvas data-scene="pion" aria-hidden="true"></canvas>
+      <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="../assets/video/pion.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-shade"></div>
+    <div class="wrap hero-copy">
+      <h1 class="display display--page">A pion field for the large-scale universe</h1>
+      <p class="hero-line hero-line--page">How one scalar field can describe the growth of cosmic structure, and how I made its simulation about 400 times faster.</p>
+      <dl class="meta">
+        <div><dt>Paper</dt><dd>arXiv:2604.12009 (2026)</dd></div>
+        <div><dt>My role</dt><dd>Co-author, and co-owner and coder of the simulation code</dd></div>
+        <div><dt>Advisor</dt><dd>Dr. Bart Horn</dd></div>
+      </dl>
+    </div>
+  </section>
+  <div class="hero-blend" aria-hidden="true"></div>
+
+  <main class="page-body" id="main">
+    <div class="section" style="padding-top:0">
+      <div class="wrap story">
+
+        <section>
+          <p class="lead">The universe's web of galaxies and voids grew from tiny early fluctuations. Our paper describes that growth with a single field.</p>
+          <p>That field is the velocity potential of the matter fluid in a ΛCDM universe. We call it the cosmic pion, because it is the Goldstone boson of spontaneously broken spacetime symmetry. Describing growth this way lets perturbation theory be organized systematically while the symmetries stay manifest.</p>
+          <p>The paper develops the theory to next-to-leading order, computes corrections to the power spectrum and checks them against the consistency relations that the broken symmetry requires. It then compares the results with simulations of structure evolution in the pion-field picture, and uses N-body simulations to measure the theory's coefficients.</p>
+          <div class="callout"><p>In plain terms: the description follows one smooth field. The density of matter and the gravitational potential can be recovered from it.</p></div>
+        </section>
+
+        <section>
+          <h2>My part</h2>
+          <p>I am a co-author of the paper and, with my advisor Dr. Bart Horn, co-owner and coder of the simulation code, PLASTIC. We share authorship and copyright. My focus was the FFT-based simulation and mapping code: taking it from a Mathematica prototype to Python to C++, and making it fast.</p>
+          <ol class="steps">
+            <li>
+              <h3>Replaced the expensive step</h3>
+              <p>The 3D simulation inverted a Laplacian with Green's functions, which costs O(N⁶) for a grid with N points per side. I replaced it with spectral inversion using FFTs, at O(N³ log N).</p>
+            </li>
+            <li>
+              <h3>Wrote a custom FFT</h3>
+              <p>A mixed-radix (2, 3, 5) Cooley–Tukey FFT in C++ that handles grid sizes beyond powers of two and works directly on 3D arrays. The thesis page has the benchmarks and the honest comparison with FFTW3.</p>
+            </li>
+            <li>
+              <h3>Measured the speedup</h3>
+              <p>About 400 times faster than the first Mathematica prototype: roughly 20 times from the move to Python, and roughly 20 times again from the move to C++. Multithreading across independent FFT slices added more on top.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>What the simulation produces</h2>
+          <figure class="figure">
+            <img src="../assets/img/pion_spectrum.png" alt="Two plots. Left: the pion-field power spectrum at two epochs. Right: fractional corrections to the power spectrum, analytic prediction against numerical simulation." loading="lazy" width="1614" height="697">
+            <figcaption>Left: the pion-field power spectrum for a box of 600 Mpc and N = 128, at a = 0.01 (blue) and a = 0.10 (orange), with Ωm0 = 0.31. Right: fractional corrections to the power spectrum from nonlinear collapse. Black is the analytic prediction at next-to-leading order, gray the numerical simulation. Figure from Celik et al. (2026).</figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="../assets/img/pion_evolution.png" alt="Maps of the evolved pion field and the matter overdensity at a = 0.1." loading="lazy">
+            <figcaption>The evolved pion field π and the overdensity δ at a = 0.1, for a box of 600 Mpc, N = 128, Ωm = 0.31 and H0 = 68 km/s/Mpc.</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h2>Where it went</h2>
+          <p>I presented this work at seven conferences and symposia between October 2022 and April 2025, ending with my honors thesis defense. The <a href="../index.html#research">full list</a> is on the home page.</p>
+        </section>
+
+        <section>
+          <h2>Paper, code and credits</h2>
+          <ul class="linklist">
+            <li><a href="https://arxiv.org/abs/2604.12009">The paper on arXiv</a><span>Celik, Horn, Mishra &amp; Muqattash (2026)</span></li>
+            <li><a href="https://github.com/BhavyaMishraBV/Pion_research">Pion_research on GitHub</a><span>A summary of the project and my contribution</span></li>
+            <li><a href="https://github.com/bhorn9/pion_lss_code">PLASTIC simulation code</a><span>Maintained in one place, by Dr. Horn and me</span></li>
+            <li><a href="honors-thesis.html">My honors thesis</a><span>The FFT work in full detail</span></li>
+          </ul>
+          <p style="margin-top:1.6em; font-size:1rem; color:var(--muted)">Dr. Bart Horn was the research advisor, and co-author of the paper and the code. Lara Celik and David Muqattash co-authored the paper. Eamon McShane gave input and testing on the code. Supported in part by the National Science Foundation's Research at Undergraduate Institutions program under grant PHY-2210475, and by the Kakos School of Arts and Sciences Summer Research Scholars Program.</p>
+        </section>
+
+        <nav class="pager" aria-label="Project navigation">
+          <a href="../index.html#work"><small>Back to</small><strong>All projects</strong></a>
+          <a href="honors-thesis.html"><small>Next project</small><strong>Simulating the universe, fast</strong></a>
+        </nav>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>&copy; <span id="year">2026</span> Bhavya Mishra</span>
+      <span><a href="../index.html#contact">Get in touch</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/scenes.js"></script>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
