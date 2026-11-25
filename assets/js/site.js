@@ -3,7 +3,7 @@
   "use strict";
 
   /* ===== Settings to edit ===== */
-  var CONTACT_EMAIL = "your.email@example.com"; // TODO: replace with your real email
+  var CONTACT_EMAIL = "bhavya.bv.mishra@gmail.com"; 
   // To send messages without opening the visitor's email app, create a free form at
   // formspree.io, then paste its endpoint here, e.g. "https://formspree.io/f/xxxxxxx".
   var FORM_ENDPOINT = "";
