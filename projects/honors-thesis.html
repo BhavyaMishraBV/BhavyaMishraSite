@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap">
   <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/project-extras.css">
 </head>
 <body data-theme="thesis">
   <a class="skip" href="#main">Skip to content</a>
@@ -26,12 +27,12 @@
     </div>
   </header>
 
-  <!-- Hero: drop your own clip at assets/video/thesis.mp4 and it replaces the animated scene -->
+  <!-- Hero: drop your own clip at media/hero_honors.mp4 and it replaces the animated scene -->
   <section class="hero hero--project">
     <div class="media">
       <canvas data-scene="thesis" aria-hidden="true"></canvas>
       <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-        <source src="../assets/video/thesis.mp4" type="video/mp4">
+        <source src="../media/hero_honors.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-shade"></div>
@@ -47,9 +48,14 @@
   </section>
   <div class="hero-blend" aria-hidden="true"></div>
 
-  <main class="page-body" id="main">
-    <div class="section" style="padding-top:0">
-      <div class="wrap story">
+  <main class="page-body page-body--plain" id="main">
+    <div class="wrap">
+      <div class="story">
+        <details class="funfact">
+          <summary>Fun fact about the video above</summary>
+          <p>This simulation (see credits below) compares images of the Helix Nebula from three observatories: Hubble’s image in visible light, Spitzer’s infrared view, and Webb’s high-resolution near-infrared look.</p>
+        </details>
+
 
         <section>
           <p class="lead">A simulation that takes forty minutes on a tiny grid is not a tool you can explore with. The thesis is about fixing that.</p>
@@ -101,6 +107,14 @@
           <p style="margin-top:1.6em; font-size:1rem; color:var(--muted)">Defended in April 2025 at the Science Seminar, Manhattan University. Advised by Dr. Bart Horn.</p>
         </section>
 
+        <section>
+          <h2>The poster</h2>
+          <figure class="figure">
+            <img src="../media/posterRepresentation.jpg" alt="Research poster for the honors thesis" loading="lazy">
+            <figcaption>Research poster. <a href="../media/poster.pptx">Download the original PowerPoint file</a>.</figcaption>
+          </figure>
+        </section>
+
         <nav class="pager" aria-label="Project navigation">
           <a href="pion-research.html"><small>Previous project</small><strong>A pion field for the large-scale universe</strong></a>
           <a href="medichat-chatbot.html"><small>Next project</small><strong>MediChat chatbot</strong></a>
@@ -109,6 +123,13 @@
       </div>
     </div>
   </main>
+
+  <aside class="credits">
+    <div class="wrap">
+      <h2>Credits</h2>
+      <p><strong>Hero video:</strong> NASA, ESA, CSA, STScI, NASA-JPL, SCC, A. Pagan (STScI).</p>
+    </div>
+  </aside>
 
   <footer class="footer">
     <div class="wrap">
