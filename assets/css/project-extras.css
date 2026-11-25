@@ -1,0 +1,36 @@
+/* Extras for the project pages. Load after site.css. */
+
+/* Image-backed body (pion page): the photo stays fixed, the content sits on glass */
+[data-theme] .page-body.page-body--image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.page-body--image > .wrap { padding-block: clamp(32px, 6vw, 72px); }
+.glass {
+  background: rgba(10, 8, 32, 0.76);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: clamp(24px, 5vw, 64px);
+}
+/* Plain body (thesis page): same spacing so both pages feel alike */
+.page-body--plain > .wrap { padding-block: clamp(32px, 6vw, 72px); }
+
+/* Fun fact toggle, same on every page that has one */
+.funfact { border: 1px solid var(--line); border-radius: 6px; background: rgba(233, 236, 245, 0.05); max-width: var(--measure); }
+.funfact summary { cursor: pointer; padding: 12px 16px; font: 500 0.95rem var(--sans); color: var(--accent); list-style: none; }
+.funfact summary::-webkit-details-marker { display: none; }
+.funfact summary::before { content: "+"; display: inline-block; width: 1.2em; font-weight: 600; }
+.funfact[open] summary::before { content: "\2212"; }
+.funfact p { margin: 0; padding: 0 16px 16px; font-size: 1rem; line-height: 1.6; color: var(--ink); }
+
+/* Credits at the very end of the page */
+.credits { border-top: 1px solid var(--line); padding-block: 28px; font: 400 0.85rem/1.6 var(--sans); color: var(--muted); }
+.credits h2 { font: 500 0.95rem var(--sans); color: var(--ink); letter-spacing: 0; margin-bottom: 0.6em; }
+.credits p { max-width: 90ch; margin: 0 0 0.5em; }
+.credits strong { font-weight: 600; color: var(--ink); }
+
+@media (max-width: 900px) {
+  [data-theme] .page-body.page-body--image { background-attachment: scroll; }
+}
