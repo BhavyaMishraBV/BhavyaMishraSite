@@ -162,7 +162,11 @@
           <!-- TODO: replace with your email -->
           <li><a href="mailto:bhavya.bv.mishra@gmail.com">bhavya.bv.mishra@gmail.com</a></li>
         </ul>
-        <form class="form" id="contact-form" novalidate>
+        <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="3fe44dd5-131c-411b-b55f-48c24f8171cd">
+          <input type="hidden" name="subject" value="New message from bhavyamishra.dev">
+          <input type="hidden" name="from_name" value="bhavyamishra.dev contact form">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
           <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
